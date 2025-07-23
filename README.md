@@ -2,9 +2,9 @@
 
 # ICEDew Valley
 
-* Esse projeto é da aula DCC202 - Desenvolvimento Web do Semestre 2025/1.
-* Departamento de Ciência da Computação - DCC
-* Universidade Federal de Juiz de Fora - UFJF
-
-# Integrandes do Grupo
-* Mariana Siano
+| **Sumário** |
+|-------------|
+| [Introdução](#Introdução) |
+| [Disciplina](#Disciplina) |
+| [Professor da Disciplina](#Professor-da-Disciplina) |
+| [Desenvolvedores](#Desenvolvedores) |
