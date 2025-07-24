@@ -11,8 +11,20 @@
     <body>
         <div class="container">
             <h1>Criação do Personagem</h1>
-            <div id="character-creation">
-                <label for="name">Nome: </label>
+
+            <div class="character-preview-section">
+                <h2>Prévia do Personagem</h2>
+                <div id="character-preview" class="character-preview">
+                    <!-- Elementos para a prévia do personagem -->
+                    <div class="preview-head"></div>
+                    <div class="preview-body"></div>
+                    <div class="preview-legs"></div>
+                    <div class="preview-feet"></div>
+                </div>
+            </div>
+
+            <div id="character-cration" class="character-form">
+                <label for="name">Nome:</label>
                 <input type="text" id="name" placeholder="Nome do Personagem" required>
 
                 <label for="gender">Gênero:</label>
@@ -31,7 +43,19 @@
                 <label for="eyes-color">Cor dos Olhos:</label>
                 <input type="color" id="eyes-color" value="#354579">
 
-                <button>Criar Personagem</button>
+                <!-- Opção de Roupa -->
+                <label for="clothing-type">Tipo de Roupa</label>
+                <select id="clothing-type">
+                    <option value="t-shirt">Camiseta</option>
+                    <option value="jacket">Jaqueta</option>
+                    <option value="dress">Vestido</option>
+                    <option value="hoodie">Moletom</option>
+                </select>
+
+                <label for="clothing-color">Cor da Roupa:</label>
+                <input type="color" id="clothing-color" value="#4CAF50">
+
+                <button id="create-character-btn">Criar Personagem</button>
             </div>
         </div>
     </body>
