@@ -5,7 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ICEDew Valley - Criar Personagem</title>
         <link rel="stylesheet" href="../css/character_creation.css">
+        <script src="../javascript/character_creation.js"></script>
     </head>
 
-    <body></body>
+    <body>
+        <div class="container">
+            <h1>Criação do Personagem</h1>
+            <div id="character-creation">
+                <label for="name">Nome: </label>
+                <input type="text" id="name" placeholder="Nome do Personagem" required>
+
+                <label for="gender">Gênero:</label>
+                <select id="gender">
+                    <option value="male">Masculino</option>
+                    <option value="female">Feminino</option>
+                    <option value="other">Outro</option>
+                </select>
+
+                <label for="hair-color">Cor do Cabelo:</label>
+                <input type="color" id="hair-color" value="#8B4513">
+
+                <label for="skin-color">Cor da Pele:</label>
+                <input type="color" id="skin-color" value="#F5DEB3">
+
+                <label for="eyes-color">Cor dos Olhos:</label>
+                <input type="color" id="eyes-color" value="#354579">
+
+                <button>Criar Personagem</button>
+            </div>
+        </div>
+    </body>
 </html>
