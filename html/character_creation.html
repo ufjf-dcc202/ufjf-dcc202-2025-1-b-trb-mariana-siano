@@ -2,7 +2,7 @@
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="viewport" content="width=device-width, initial-scale=1.0">
         <title>ICEDew Valley - Criar Personagem</title>
         <link rel="stylesheet" href="../css/character_creation.css">
         <script src="../javascript/character_creation.js"></script>
@@ -10,52 +10,107 @@
 
     <body>
         <div class="container">
-            <h1>Criação do Personagem</h1>
+            <div class="header">
+                <img src="../images/icedew-valley-icon.jpg" alt="ICEDew Icon" class="game-icon">
+                <h1>Criação do Personagem</h1>
+            </div>
 
-            <div class="character-preview-section">
-                <h2>Prévia do Personagem</h2>
-                <div id="character-preview" class="character-preview">
-                    <!-- Elementos para a prévia do personagem -->
-                    <div class="preview-head"></div>
-                    <div class="preview-body"></div>
-                    <div class="preview-legs"></div>
-                    <div class="preview-feet"></div>
+            <div class="main-content">
+                <div class="character-preview-panel">
+                    <div class="preview-frame">
+                        <div id="character-preview class="character-preview">
+                            <div class="preview-head"></div>
+                            <div class="preview-body"></div>
+                            <div class="preview-legs"></div>
+                            <div class="preview-feet"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-details-panel">
+                    <div class="input-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" placeholder="Nome do Personagem" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fame-name">Nome da Fazenda:</label>
+                        <input type="text" id="fame-name" placeholder="Nome da Fazenda" required>
+                        <span class="farm-suffix">Fazenda</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="favorite-thing">Coisa favorita:</label>
+                        <input type="text" id="favorite-thing" placeholder="Escrever..." required>
+                    </div>
+
+                    <div class="animal-preference">
+                        <label>Animal Preferido</label>
+                        <div class="animal-option">
+                            <button class="arrow-btn" id="prev-animal">&lt;</button>
+                            <img id="animal-icon" src="../images/dog-icon.jpg" alt="dog" class="animal-icon">
+                            <button class="arrow-btn" data-type="skin" data-direction="next">&gt;</button>
+                        </div>
+                        <div class="customization-color">
+                            <label for="skin-color">Cor de Pele</label>
+                            <input type="color" id="skin-color" value="#F5DEB3">
+                        </div>
+
+                        <div class="customization-option">
+                            <button class="arrow-btn" data-type="hair" data-direction="prev">&lt;</button>
+                            <span>Cabelo <span id="hair-index">1</span></span>
+                            <button class="arrow-btn" data-type="hair" data-direction="next">&gt;</button>
+                        </div>
+                        <div class="customization-color">
+                            <label for="hair-color">Cor do Cabelo:</label>
+                            <input type="color" id="hair-color" value="#8B4513">
+                        </div>
+
+                        <div class="customization-option">
+                            <button class="arrow-btn" data-type="shirt" data-direction="prev">&lt;</button>
+                            <span>Camisa <span id="shirt-index">1</span></span>
+                            <button class="arrow-btn" data-type="shirt" data-direction="next">&gt;</button>
+                        </div>
+                        <div class="customization-color">
+                            <label for="shirt-color">Cor da Camisa:</label>
+                            <input type="color" id="shirt-color" value="#4CAF50">
+                        </div>
+
+                        <div class="customization-option">
+                            <button class="arrow-btn" data-type="pants" data-direction="prev">&lt;</button>
+                            <span>Calça <span id="pants-index">1</span></span>
+                            <button class="arrow-btn" data-type="pants" data-direction="next">&gt;</button>
+                        </div>
+                        <div class="customization-color">
+                            <label for="pants-color">Cor da Calça:</label>
+                            <input type="color" id="pants-color" value="#354579">
+                        </div>
+
+                        <div class="customization-option">
+                            <button class="arrow-btn" data-type="acc" data-direction="prev">&lt;</button>
+                            <span>Conta <span id="acc-index">1</span></span>
+                            <button class="arrow-btn" data-type="acc" data-direction="next">&gt;</button>
+                        </div>
+                        <div class="custinuzation-color">
+                            <label for="eyes-color">Cor dos Olhos</label>
+                            <input type="color" id="eyes-color" value="#000000">
+                        </div>
+                    </div>
+
+                    <div class="gender-selection">
+                        <img src="../images/male.png" alt="Male" id="gender-male" class="gender-icon active" data-gender="male">
+                        <img src="../images/female.png" alt="Female" id="gender-female" class="gender-icon" data-gender="female">
+                    </div>
                 </div>
             </div>
 
-            <div id="character-cration" class="character-form">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" placeholder="Nome do Personagem" required>
+            <div class="footer">
+                <div class="skip-intro">
+                    <input type="checkbox" id="skip-intro">
+                    <label for="skip-intro">Pular Introdução</label>
+                </div>
 
-                <label for="gender">Gênero:</label>
-                <select id="gender">
-                    <option value="male">Masculino</option>
-                    <option value="female">Feminino</option>
-                    <option value="other">Outro</option>
-                </select>
-
-                <label for="hair-color">Cor do Cabelo:</label>
-                <input type="color" id="hair-color" value="#8B4513">
-
-                <label for="skin-color">Cor da Pele:</label>
-                <input type="color" id="skin-color" value="#F5DEB3">
-
-                <label for="eyes-color">Cor dos Olhos:</label>
-                <input type="color" id="eyes-color" value="#354579">
-
-                <!-- Opção de Roupa -->
-                <label for="clothing-type">Tipo de Roupa</label>
-                <select id="clothing-type">
-                    <option value="t-shirt">Camiseta</option>
-                    <option value="jacket">Jaqueta</option>
-                    <option value="dress">Vestido</option>
-                    <option value="hoodie">Moletom</option>
-                </select>
-
-                <label for="clothing-color">Cor da Roupa:</label>
-                <input type="color" id="clothing-color" value="#4CAF50">
-
-                <button id="create-character-btn">Criar Personagem</button>
+                <button id="create-character-btn" class="ok-button">OK</button>
             </div>
         </div>
     </body>
