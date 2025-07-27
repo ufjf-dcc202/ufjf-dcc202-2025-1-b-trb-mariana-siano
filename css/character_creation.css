@@ -160,7 +160,7 @@ h1 {
     transition: opacity 0.3 ease, height 0.3 ease;
 }
 
-.preview-legs::before, .preview-legs:after {
+.preview-legs::before, .preview-legs::after {
     content: '';
     width: 12px;
     height: 100%;
@@ -171,5 +171,97 @@ h1 {
 .preview-feet {
     width: 35px;
     height: 15px;
-    background-color: var(--shoes-color);
+    background-color: var(--shoes-color, #8B4513);
+    border-radius: 3px;
+    position: relative;
+    top: -3px;
+    z-index: 0;
+    transform: opacity 0.3 ease;
+}
+
+/* Esconder pernas e pés se um vestido for selecionado */
+.preview-body.is-dress + .preview-legs,
+.preview-body.is-dress + .preview-legs + .preview-feet {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Garantir que pernas e pés estejam visíveis quando não for um vestido */
+.preview-body::not(.is-dress) + .preview-legs,
+.preview-body::not(.is-dress) + .preview-legs + .preview-feet {
+    opacity: 1;
+    height: auto;
+    pointer-events: auto;
+}
+
+.character-details-panel {
+    background-color: #6A4C3A;
+    border: 3px solid #4A3325;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #F7E6C4;
+}
+
+.input-group input[type="text"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 2px solid #4A3325;
+    background-color: #D3B586;
+    color: #4A3325;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.input-group .farm-suffix {
+    align-self: flex-end;
+    margin-top: 5px;
+    color: #F7E6C4;
+}
+
+.animal-preference {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.animal-preference label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #F7E6C4;
+}
+
+.animal-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.animal-icon {
+    width: 60px;
+    height: 60px;
+    image-rendering: pixelated;
+    border: 2px solid #4A3325;
+    border-radius: 5px;
+    background-color: #D3B586;
 }
