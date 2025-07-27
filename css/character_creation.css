@@ -425,4 +425,34 @@ h1 {
 }
 
 /* Responsividade */
-@media (max-width: 900px) {}
+@media (max-width: 900px) {
+    .container {
+        grid-template-areas: 
+            "header"
+            "preview"
+            "detail"
+            "custom"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .ok-button {
+        padding: 8px 20px;
+        font-size: 16px;
+    }
+
+    .gender-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
