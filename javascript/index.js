@@ -1,20 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const startGameBtn = document.getElementById('start-game-btn');
+    const newGameBtn = document.getElementById('new-game-btn');
     const continueGameBtn = document.getElementById('continue-game-btn');
+    const optionsBtn = document.getElementById('options-btn');
+    const exitBtn = document.getElementById('exit-btn');
 
-    //Verifica se existe um jogo salvo para mostrar o botão de "Continuar o Jogo"
+    //Verifica se há um jogo salvo para exibir o botão "Continuar Jogo"
     if(localStorage.getItem('playerName')) {
-        continueGameBtn.style.display = 'inline-block'
+        continueGameBtn.style.display = 'block'; //Mostra o botão
+    } else {
+        continueGameBtn.style.display = 'none'; //Esconde o botão (padrão, mas para garantir)
     }
 
-    startGameBtn.addEventListener('click', () => {
-        //Limpa qualquer jogo salvo para começar um novo
-        localStorage.clear(); //Limpa todos os dados do LocalStorage
-        window.localStorage.href = 'character_creation.html';
+    newGameBtn.addEventListener('click', () => {
+        //Redireciona para a página de criação de personagem
+        window.location.href = 'character_creation.html';
     });
 
     continueGameBtn.addEventListener('click', () => {
-        //Redireciona para a página do jogo com o estado salvo
-        window.localStorage.href = 'game.html';
+        //Redireciona para a página principal do jogo
+        window.location.href = 'game_main.html';
+    });
+
+    optionsBtn.addEventListener('click', () => {
+        alert('Funcionalidade de Opções ainda não implementada!');
+    });
+
+    exitBtn.addEventListener('click', () => {
+        alert('Saindo do jogo... (Em um navegador, isso não fecha a aba/janela)');
     });
 });
