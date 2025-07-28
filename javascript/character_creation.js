@@ -39,13 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const animalIcon = document.getElementById('animal-icon');
     const prevAnimalBtn = document.getElementById('prev-animal');
     const nextAnimalBtn = document.getElementById('next-animal');
-    const animalTypes = ['cat_icon.png', 'dog_icon.png', 'cow_icon.png', 'rabbit_icon.png', 'horse_icon.png'];
-    let currentAnimalIndex = 0; // Índice do animal atualmente selecionado
+    const animalTypes = [
+    'cat_icon.jpg',  
+    'cat2_icon.jpg',  
+    'cat3_icon.jpg', 
+    'cat4_icon.jpg', 
+    'cat5_icon.jpg',
+    'dog_icon.jpg',  
+    'horse_icon.jpg',
+    'horse1_icon.jpg',
+    'rabbit_icon.jpg',
+    'rabbit1_icon.jpg'
+    ];
+    let currentAnimalIndex = 0; //Índice do animal atualmente selecionado
 
     //Seleção de gênero
     const genderMaleIcon = document.getElementById('gender-male');
     const genderFemaleIcon = document.getElementById('gender-female');
-    let selectedGender = 'male'; // Gênero padrão
+    let selectedGender = 'male'; //Gênero padrão
 
     //--- 3. Funções de Atualização da Interface ---
 
@@ -91,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Atualiza a imagem do animal exibida
     function updateAnimalDisplay() {
-        animalIcon.src = `./images/${animalTypes[currentAnimalIndex]}`;
-        animalIcon.alt = animalTypes[currentAnimalIndex].replace('_icon.png', ''); // Define o texto alt da imagem
+        animalIcon.src = `../images/${animalTypes[currentAnimalIndex]}`;
+        animalIcon.alt = animalTypes[currentAnimalIndex].replace('_icon.jpg', ''); //Define o texto alt da imagem
     }
 
     //Gerencia a seleção visual do gênero
@@ -149,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const favoriteThing = favoriteThingInput.value.trim();
         const skipIntro = skipIntroCheckbox.checked;
 
-        if (name === '') {
+        if(name === '') {
             alert('Por favor, insira um nome para o personagem.');
             return; //Impede a criação se o nome estiver vazio
         }
@@ -168,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerPantsIndex', customizationOptions.pants.index);
         localStorage.setItem('playerShoesIndex', customizationOptions.shoes.index);
         localStorage.setItem('playerAccIndex', customizationOptions.acc.index);
-        localStorage.setItem('playerAnimalPreference', animalTypes[currentAnimalIndex]); // Salva o nome do arquivo do ícone do animal
+        localStorage.setItem('playerAnimalPreference', animalTypes[currentAnimalIndex]); //Salva o nome do arquivo do ícone do animal
 
         //Salva as cores
         localStorage.setItem('playerSkinColor', skinColorInput.value);
