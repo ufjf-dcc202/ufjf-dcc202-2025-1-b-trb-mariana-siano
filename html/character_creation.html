@@ -2,8 +2,9 @@
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ICEDew Valley - Criar Personagem</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/character_creation.css">
         <script src="../javascript/character_creation.js"></script>
     </head>
@@ -11,14 +12,14 @@
     <body>
         <div class="container">
             <div class="header">
-                <img src="../images/icedew-valley-icon.jpg" alt="ICEDew Icon" class="game-icon">
+                <img src="../images/game_logo.jpg" alt="Ícone do Jogo" class="game-icon">
                 <h1>Criação do Personagem</h1>
             </div>
 
             <div class="main-content">
                 <div class="character-preview-panel">
                     <div class="preview-frame">
-                        <div id="character-preview class="character-preview">
+                        <div id="character-preview" class="character-preview">
                             <div class="preview-head"></div>
                             <div class="preview-body"></div>
                             <div class="preview-legs"></div>
@@ -29,30 +30,38 @@
 
                 <div class="character-details-panel">
                     <div class="input-group">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" placeholder="Nome do Personagem" required>
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" placeholder="Jhonny" required>
                     </div>
-
                     <div class="input-group">
-                        <label for="fame-name">Nome da Fazenda:</label>
-                        <input type="text" id="fame-name" placeholder="Nome da Fazenda" required>
+                        <label for="farm-name">Nome da Fazenda</label>
+                        <input type="text" id="farm-name" placeholder="Fazenda do Boi">
                         <span class="farm-suffix">Fazenda</span>
                     </div>
-
                     <div class="input-group">
-                        <label for="favorite-thing">Coisa favorita:</label>
-                        <input type="text" id="favorite-thing" placeholder="Escrever..." required>
+                        <label for="favorite-thing">Coisa Favorida</label>
+                        <input type="text" id="favorite-thing" placeholder="Escrever...">
                     </div>
 
                     <div class="animal-preference">
                         <label>Animal Preferido</label>
                         <div class="animal-options">
                             <button class="arrow-btn" id="prev-animal">&lt;</button>
-                            <img id="animal-icon" src="../images/dog_icon.jpg" alt="dog" class="animal-icon">
+                            <img id="animal-icon" src="../images/cat_icon.png" alt="Gato" class="animal-icon">
+                            <button class="arrow-btn" id="next-animal">&gt;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-customization-panel">
+                    <div class="customization-section">
+                        <div class="customization-option">
+                            <button class="arrow-btn" data-type="skin" data-direction="prev">&lt;</button>
+                            <span>Pele <span id="skin-index">1</span></span>
                             <button class="arrow-btn" data-type="skin" data-direction="next">&gt;</button>
                         </div>
                         <div class="customization-color">
-                            <label for="skin-color">Cor de Pele</label>
+                            <label for="skin-color">Cor da Pele:</label>
                             <input type="color" id="skin-color" value="#F5DEB3">
                         </div>
 
@@ -88,28 +97,27 @@
 
                         <div class="customization-option">
                             <button class="arrow-btn" data-type="shoes" data-direction="prev">&lt;</button>
-                            <span>Calçados <span id="shoes-index">1</span></span>
+                            <span>Sapato <span id="shoes-index">1</span></span>
                             <button class="arrow-btn" data-type="shoes" data-direction="next">&gt;</button>
                         </div>
                         <div class="customization-color">
-                            <label for="shoes-color">Cor dos Calçados:</label>
+                            <label for="shoes-color">Cor do Sapato:</label>
                             <input type="color" id="shoes-color" value="#8B4513">
                         </div>
 
                         <div class="customization-option">
                             <button class="arrow-btn" data-type="acc" data-direction="prev">&lt;</button>
-                            <span>Conta <span id="acc-index">1</span></span>
+                            <span>Acessório <span id="acc-index">1</span></span>
                             <button class="arrow-btn" data-type="acc" data-direction="next">&gt;</button>
                         </div>
-                        <div class="custinuzation-color">
-                            <label for="eyes-color">Cor dos Olhos</label>
+                        <div class="customization-color">
+                            <label for="eyes-color">Cor dos Olhos:</label>
                             <input type="color" id="eyes-color" value="#000000">
                         </div>
                     </div>
-
                     <div class="gender-selection">
-                        <img src="../images/male.png" alt="Male" id="gender-male" class="gender-icon active" data-gender="male">
-                        <img src="../images/female.png" alt="Female" id="gender-female" class="gender-icon" data-gender="female">
+                        <img src="../images/male.png" alt="Símbolo Masculino" id="gender-male" class="gender-icon active" data-gender="male">
+                        <img src="../images/female.png" alt="Símbolo Feminino" id="gender-female" class="gender-icon" data-gender="female">
                     </div>
                 </div>
             </div>
@@ -119,7 +127,6 @@
                     <input type="checkbox" id="skip-intro">
                     <label for="skip-intro">Pular Introdução</label>
                 </div>
-
                 <button id="create-character-btn" class="ok-button">OK</button>
             </div>
         </div>
