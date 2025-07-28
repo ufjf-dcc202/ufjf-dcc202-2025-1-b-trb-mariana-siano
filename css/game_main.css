@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    background-color: #3B2B1E; /* Fundo escuro */
+    margin: 0;
+    padding: 20px;
+    color: #F7E6C4;
+    font-size: 16px;
+    text-align: center;
+}
+
+.main-menu-container {
+    background-color: #6A4C3A;
+    border: 5px solid #4A3325;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 1.6);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.game-logo {
+    width: 200px; /* Ajuste o tamanho conforme sua imagem */
+    height: auto;
+    image-rendering: pixelated;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #4A3325;
+    font-size: 40px;
+    text-shadow: 2px 2px #D3B586;
+    margin: 0;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.menu-button {
+    background-color: #2ECC71;
+    color: white;
+    padding: 15px 25px;
+    border: 3px solid #27AE60;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 19px;
+    font-weight: bold;
+    text-shadow: 1px 1px #1E8449;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    image-rendering: pixelated;
+}
+
+.menu-button:hover {
+    background-color: #27AE60;
+    transform: translateY(-2px);
+}
+
+.menu-button:active {
+    transform: translateY(0);
+}
+
+.menu-button:disabled {
+    background-color: #CCCCCC;
+    border-color: #999999;
+    color: #666666;
+    cursor: not-allowed;
+    text-shadow: none;
+    transform: none;
+}

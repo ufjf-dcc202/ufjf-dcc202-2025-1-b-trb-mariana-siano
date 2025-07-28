@@ -78,11 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             previewBody.classList.remove('is-dress');
         }
-
-        //Se você tivesse sprites de cabelo, camisa, etc., faria algo como:
-        //previewHead.style.backgroundImage = `url(./images/hair_${customizationOptions.hair.index}.png)`;
-        //previewBody.style.backgroundImage = `url(./images/shirt_${customizationOptions.shirt.index}.png)`;
-        //E gerenciaria a cor com filtros CSS ou múltiplas imagens.
     }
 
     //Atualiza o índice de um tipo de customização (Skin, Hair, etc.)
