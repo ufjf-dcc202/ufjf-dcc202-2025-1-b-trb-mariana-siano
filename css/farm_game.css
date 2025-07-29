@@ -258,3 +258,47 @@ body {
 .footer-button:active {
     transform: translateY(0);
 }
+
+/* Ajustes Responsivos */
+@media(max-width: 768px) {
+    .game-controls {
+        flex-direction: column;
+    }
+
+    .seed-selection, .action-buttons {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .seed-button, .action-button {
+        width: calc(100% - 10px); /* Um botão por linha */
+    }
+
+    .farm-grid {
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Ajusta tamanho da célula */
+        grid-template-rows: repeat(auto-fit, minmax(40px, 1fr));
+    }
+
+    .grid-cell {
+        width: auto;
+        height: auto;
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+@media(max-width: 500px) {
+    .game-header h1 {
+        font-size: 1.8em;
+    }
+
+    .info-bar {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer-button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}
