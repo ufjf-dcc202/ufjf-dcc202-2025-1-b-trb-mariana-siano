@@ -289,7 +289,7 @@ body {
 
 @media(max-width: 500px) {
     .game-header h1 {
-        font-size: 1.8em;
+        font-size: 29px;
     }
 
     .info-bar {
