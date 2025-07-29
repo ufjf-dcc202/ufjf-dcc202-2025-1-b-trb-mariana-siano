@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     //--- Configurações do Jogo ---
-    const GRID_SIZE = 12; // Grade 12x12
+    const GRID_SIZE = 12; //Grade 12x12
     const INITIAL_MONEY = 100;
     const TIME_ADVANCE_COST = 5; //Custo para avançar o tempo (opcional)
 
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moneyDisplay = document.getElementById('money-display');
     const selectedSeedDisplay = document.getElementById('selected-seed-display');
     const gameMessageDisplay = document.getElementById('game-message');
+    const messageBox = document.getElementById('message-box'); //Referência à caixa de mensagem
 
     const seedButtons = document.querySelectorAll('.seed-button');
     const actionButtons = document.querySelectorAll('.action-button');
@@ -61,30 +62,31 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Exibe uma mensagem no painel de mensagens do jogo.
      * @param {string} message - A mensagem a ser exibida.
-     * @param {string} type - Tipo de mensagem (opcional, para estilização futura).
+     * @param {string} type - Tipo de mensagem ('info', 'success', 'error').
      */
     function showGameMessage(message, type = 'info') {
         gameMessageDisplay.textContent = message;
-        // Adicionar classes para diferentes tipos de mensagem (ex: 'error', 'success') se necessário
-        // gameMessageDisplay.className = `message-box-text ${type}`;
+        //Adiciona classes para diferentes tipos de mensagem para estilização
+        messageBox.className = `message-box ${type}`; // Define a classe da caixa de mensagem
     }
 
-    //Atualiza a exibição de dinheiro na interface
+    //Atualiza a exibição de dinheiro na interface.
     function updateMoneyDisplay() {
         moneyDisplay.textContent = money;
     }
 
-    //Atualiza a exibição da semente selecionada na interface
+    //Atualiza a exibição da semente selecionada na interface.
     function updateSelectedSeedDisplay() {
         selectedSeedDisplay.textContent = selectedSeed ? seedTypes[selectedSeed].name : 'Nenhuma';
     }
 
-    //Incializa a grade da fazenda com espaços vazios, pedras e ervas daninhas
+    //Inicializa a grade da fazenda com espaços vazios, pedras e ervas daninhas.
     function initializeFarmGrid() {
         farmGrid = [];
 
         for(let r = 0; r < GRID_SIZE; r++) {
             farmGrid[r] = [];
+
             for(let c = 0; c < GRID_SIZE; c++) {
                 let cellType = 'empty';
                 const rand = Math.random();
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showGameMessage('Fazenda inicializada! Escolha uma ferramenta.');
     }
 
-    //Renderiza (ou atualiza) a grade da fazemda na interface
+    //Renderiza (ou atualiza) a grade da fazenda na interface.
     function renderFarmGrid() {
         farmGridElement.innerHTML = ''; //Limpa a grade existente
 
@@ -158,32 +160,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const cell = farmGrid[row][col];
 
         if(!selectedTool) {
-            showGameMessage('Por favor, selecione uma ferramenta ou semente primeiro.');
+            showGameMessage('Por favor, selecione uma ferramenta ou semente primeiro.', 'info');
             return;
         }
 
         switch(selectedTool) {
             case 'clear':
-                if(cell.type === 'stone' || cell.type === 'weed') {
+                if(cell.type === 'stone' || cell.type === 'weed' || cell.dead) { //Pode limpar plantas mortas também
                     cell.type = 'empty';
-                    showGameMessage('Terreno limpo!');
+                    cell.seedType = null; //Garante que dados de semente sejam limpos
+                    cell.growthPhase = 0;
+                    cell.watered = false;
+                    cell.dead = false;
+                    showGameMessage('Terreno limpo!', 'success');
                 } else {
-                    showGameMessage('Nada para limpar aqui.');
+                    showGameMessage('Nada para limpar aqui.', 'info');
                 }
                 break;
+
             case 'prepare':
                 if(cell.type === 'empty') {
                     cell.type = 'prepared';
-                    showGameMessage('Solo preparado para o plantio!');
+                    showGameMessage('Solo preparado para o plantio!', 'success');
                 } else if (cell.type === 'prepared') {
-                    showGameMessage('Solo já está preparado.');
+                    showGameMessage('Solo já está preparado.', 'info');
                 } else {
-                    showGameMessage('Não é possível preparar este terreno.');
+                    showGameMessage('Não é possível preparar este terreno. Limpe-o primeiro.', 'error');
                 }
                 break;
+
             case 'plant':
                 if(cell.type === 'prepared' && selectedSeed) {
                     const seedInfo = seedTypes[selectedSeed];
+
                     if(money >= seedInfo.cost) {
                         money -= seedInfo.cost;
                         cell.type = 'planted';
@@ -192,30 +201,36 @@ document.addEventListener('DOMContentLoaded', () => {
                         cell.watered = false; //Começa não regada
                         cell.dead = false;
                         updateMoneyDisplay();
-                        showGameMessage(`Semente de ${seedInfo.name} plantada!`);
+                        showGameMessage(`Semente de ${seedInfo.name} plantada!`, 'success');
                     } else {
-                        showGameMessage('Dinheiro insuficiente para comprar esta semente.');
+                        showGameMessage('Dinheiro insuficiente para comprar esta semente.', 'error');
                     }
                 } else if(!selectedSeed) {
-                    showGameMessage('Selecione uma semente para plantar primeiro.');
+                    showGameMessage('Selecione uma semente para plantar primeiro.', 'info');
                 } else if(cell.type === 'planted') {
-                    showGameMessage('Já há uma planta aqui.');
+                    showGameMessage('Já há uma planta aqui. Use a ferramenta "Limpar" para removê-la.', 'info');
                 } else {
-                    showGameMessage('O solo precisa ser preparado antes de plantar.');
+                    showGameMessage('O solo precisa ser preparado antes de plantar.', 'error');
                 }
                 break;
+
             case 'water':
                 if(cell.type === 'planted' && !cell.dead) {
-                    cell.watered = true;
-                    showGameMessage('Planta regada!');
+                    if(!cell.watered) { //Só rega se não estiver já regado
+                        cell.watered = true;
+                        showGameMessage('Planta regada!', 'success');
+                    } else {
+                        showGameMessage('Esta planta já foi regada neste ciclo.', 'info');
+                    }
                 } else if(cell.dead) {
-                    showGameMessage('Esta planta está morta e não pode ser regada.');
+                    showGameMessage('Esta planta está morta e não pode ser regada. Use "Limpar".', 'error');
                 } else {
-                    showGameMessage('Nada para regar aqui.');
+                    showGameMessage('Nada para regar aqui.', 'info');
                 }
                 break;
+
             case 'harvest':
-                if(cell.type === 'planted' && cell.growthPhase === seedTypes[cell.seedType].growthPhases && !cell.dead) {
+                if(cell.type === 'planted' && cell.seedType && cell.growthPhase === seedTypes[cell.seedType].growthPhases && !cell.dead) {
                     const seedInfo = seedTypes[cell.seedType];
                     money += seedInfo.harvestValue;
                     cell.type = 'empty'; //Volta a ser solo vazio
@@ -224,25 +239,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     cell.watered = false;
                     cell.dead = false;
                     updateMoneyDisplay();
-                    showGameMessage(`Você colheu ${seedInfo.name} e ganhou ${seedInfo.harvestValue} ouro!`);
+                    showGameMessage(`Você colheu ${seedInfo.name} e ganhou ${seedInfo.harvestValue} ouro!`, 'success');
                 } else if(cell.type === 'planted' && cell.dead) {
-                    showGameMessage('Esta planta está morta. Use a ferramenta "Limpar" para removê-la.');
+                    showGameMessage('Esta planta está morta. Use a ferramenta "Limpar" para removê-la.', 'error');
                 } else if(cell.type === 'planted') {
-                    showGameMessage('Esta planta ainda não está pronta para a colheita.');
+                    showGameMessage('Esta planta ainda não está pronta para a colheita.', 'info');
                 } else {
-                    showGameMessage('Nada para colher aqui.');
+                    showGameMessage('Nada para colher aqui.', 'info');
                 }
                 break;
         }
         renderFarmGrid(); //Sempre renderiza a grade após uma ação
     }
 
-    /**
-     * Avança o tempo no jogo, fazendo as plantas crescerem ou morrerem.
-     */
+    //Avança o tempo no jogo, fazendo as plantas crescerem ou morrerem
     function advanceTime() {
         if(money < TIME_ADVANCE_COST) {
-            showGameMessage(`Você precisa de ${TIME_ADVANCE_COST} ouro para avançar o tempo!`);
+            showGameMessage(`Você precisa de ${TIME_ADVANCE_COST} ouro para avançar o tempo!`, 'error');
             return;
         }
         money -= TIME_ADVANCE_COST;
@@ -254,10 +267,12 @@ document.addEventListener('DOMContentLoaded', () => {
         for(let r = 0; r < GRID_SIZE; r++) {
             for(let c = 0; c < GRID_SIZE; c++) {
                 const cell = farmGrid[r][c];
+
                 if(cell.type === 'planted' && !cell.dead) {
                     if(cell.watered) {
                         //Planta cresce se regada e não estiver no crescimento máximo
                         const seedInfo = seedTypes[cell.seedType];
+
                         if(cell.growthPhase < seedInfo.growthPhases) {
                             cell.growthPhase++;
                             plantsGrown++;
@@ -274,9 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFarmGrid(); //Atualiza a grade após o avanço do tempo
 
         let message = 'O tempo avançou.';
+
         if(plantsGrown > 0) message += ` ${plantsGrown} plantas cresceram.`;
         if(plantsDied > 0) message += ` ${plantsDied} plantas morreram por falta de água!`;
-        showGameMessage(message);
+        showGameMessage(message, 'info');
     }
 
     /**
@@ -287,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedSeed = seedKey;
         selectedTool = 'plant'; //Selecionar semente automaticamente seleciona a ferramenta de plantio
         updateSelectedSeedDisplay();
-        showGameMessage(`Semente de ${seedTypes[seedKey].name} selecionada! Agora clique em um solo preparado para plantar.`);
+        showGameMessage(`Semente de ${seedTypes[seedKey].name} selecionada! Agora clique em um solo preparado para plantar.`, 'info');
         highlightSelectedButton(seedButtons, seedKey);
         highlightSelectedButton(actionButtons, 'plant'); //Destaca o botão de plantar
     }
@@ -300,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedTool = toolKey;
         selectedSeed = null; //Desseleciona qualquer semente
         updateSelectedSeedDisplay();
-        showGameMessage(`Ferramenta "${toolKey}" selecionada. Clique em um quadrado na fazenda.`);
+        showGameMessage(`Ferramenta "${toolKey}" selecionada. Clique em um quadrado na fazenda.`, 'info');
         highlightSelectedButton(actionButtons, toolKey);
         highlightSelectedButton(seedButtons, null); //Desseleciona botões de semente
     }
@@ -313,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function highlightSelectedButton(buttons, selectedKey) {
         buttons.forEach(button => {
             const buttonKey = button.dataset.seedType || button.id.replace('-tool-btn', '');
+
             if(buttonKey === selectedKey) {
                 button.classList.add('selected');
             } else {
@@ -355,11 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
     newGameBtn.addEventListener('click', () => {
         //Reinicia o jogo completamente
         const confirmNewGame = confirm('Tem certeza que deseja iniciar um Novo Jogo? Todo o progresso da fazenda será perdido.');
+
         if(confirmNewGame) {
             initGame(); //Reinicializa a fazenda e o dinheiro
             money = INITIAL_MONEY; //Garante que o dinheiro resete
             updateMoneyDisplay();
-            showGameMessage('Um novo jogo começou! Sua fazenda foi reiniciada.');
+            showGameMessage('Um novo jogo começou! Sua fazenda foi reiniciada.', 'info');
         }
     });
 
