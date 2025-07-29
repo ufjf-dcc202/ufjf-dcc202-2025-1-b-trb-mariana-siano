@@ -9,5 +9,46 @@
         <script src="../javascript/fam_game.js"></script>
     </head>
 
-    <body></body>
+    <body>
+        <div class="game-container">
+            <div class="game-header">
+                <h1>ICEDew Valley - Sua Fazenda</h1>
+                <div class="info-bar">
+                    <p>Dinheiro: <span id="money-display">0</span> ouro</p>
+                    <p>Semente Selecionada: <span id="selected-seed-display">Nenhuma</span></p>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div class="farm-grid" id="farm-grid"></div>
+            </div>
+
+            <div class="game-constrols">
+                <div class="seed-selection">
+                    <h3>Escolha uma semente</h3>
+                    <button class="seed-button" data-seed-type="cenoura">Cenoura (10G)</button>
+                    <button class="seed-button" data-seed-type="tomate">Tomate (15G)</button>
+                    <button class="seed-button" data-seed-type="abobora">Abobora (25G)</button>
+                </div>
+
+                <div class="action-buttons"></div>
+                <h3>Ações</h3>
+                <button class="action-button" id="clear-tool-btn">Limpar</button>
+                <button class="action-button" id="prepare-tool-btn">Preparar Solo</button>
+                <button class="action-button" id="plant-tool-btn">Plantar</button>
+                <button class="action-button" id="water-tool-btn">Regar</button>
+                <button class="action-button" id="harvest-tool-btn">Colher</button>
+                <button class="action-button" id="advance-time-btn">Avançar Tempo</button>
+            </div>
+        </div>
+
+        <div class="message-box">
+            <p id="game-message">Bem-vindo(a) à sua fazenda! Clique em uma ferramenta e depois em um quadrado</p>
+        </div>
+
+        <div class="game-footer">
+            <button id="back-to-menu-btn" class="footer-button">Voltar ao Menu Principal</button>
+            <button id="new-game-btn" class="footer-button">Novo Jogo</button>
+        </div>
+    </body>
 </html>
