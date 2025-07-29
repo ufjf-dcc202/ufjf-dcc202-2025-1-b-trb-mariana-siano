@@ -120,8 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 cellElement.dataset.row = r;
                 cellElement.dataset.col = c;
 
-                //Adiciona classes baseadas no tipo de célula
-                cellElement.classList.add(`cell-${cellData.type}`);
+                //Remove classes anteriores de tipo da célula
+                cellElement.classList.remove(
+                    'cell-empty',
+                    'cell-stone',
+                    'cell-weed',
+                    'cell-prepared',
+                    'cell-planted'
+                );
+
+                //Adiciona a classe correspondente ao tipo atual
+                cellElement.classList.add(`cell-${cellData.type}`)
+
                 if(cellData.watered) {
                     cellElement.classList.add('cell-watered');
                 }
@@ -155,8 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {Event} event - O evento de clique.
      */
     function handleCellClick(event) {
-        const row = parseInt(event.target.dataset.row);
-        const col = parseInt(event.target.dataset.col);
+        const cellElement = event.target.closest('.grid-cell');
+        if(!cellElement) {
+            //Clicou fora da célula
+            return;
+        }
+
+        const row = parseInt(cellElement.dataset.row);
+        const col = parseInt(cellElement.dataset.col);
+
+        if(isNaN(row) || isNaN(col)) {
+            showGameMessage('Erro ao identificar célula clicada.', 'error');
+            return;
+        }
+
         const cell = farmGrid[row][col];
 
         if(!selectedTool) {
@@ -366,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Listeners para os botões do rodapé
     backToMenuBtn.addEventListener('click', () => {
         //Volta para o menu principal, mantendo o estado do jogo se o usuário quiser continuar depois
-        window.location.href = 'index.html';
+        window.location.href = 'game_main.html';
     });
 
     newGameBtn.addEventListener('click', () => {
