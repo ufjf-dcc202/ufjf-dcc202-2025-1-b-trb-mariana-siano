@@ -129,21 +129,21 @@ body {
 
 /* Cenoura */
 .plant-cenoura-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
-.plant-cenoura-0 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
-.plant-cenoura-0 { background-image: url('../images/cenoura_cres_2.png'); } /* Crescimento 2 */
-.plant-cenoura-0 { background-image: url('../images/cenoura_pronta.png'); } /* Crescimento 3 (pronto) */
+.plant-cenoura-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
+.plant-cenoura-2 { background-image: url('../images/cenoura_cres_2.png'); } /* Crescimento 2 */
+.plant-cenoura-3 { background-image: url('../images/cenoura_pronta.png'); } /* Crescimento 3 (pronto) */
 
 /* Tomate */
-.plant-cenoura-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
-.plant-cenoura-0 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
-.plant-cenoura-0 { background-image: url('../images/tomate-cres_2.png'); } /* Crescimento 2 */
-.plant-cenoura-0 { background-image: url('../images/tomate-pronto.jpg'); } /* Crescimento 3 */
+.plant-tomate-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
+.plant-tomate-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
+.plant-tomate-2 { background-image: url('../images/tomate-cres_2.png'); } /* Crescimento 2 */
+.plant-tomate-3 { background-image: url('../images/tomate-pronto.jpg'); } /* Crescimento 3 */
 
 /* Abobora */
-.plant-cenoura-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
-.plant-cenoura-0 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
-.plant-cenoura-0 { background-image: url('../images/cres_2-abob.png'); } /* Crescimento 2 */
-.plant-cenoura-0 { background-image: url('../images/abobora-pronta.jpg'); } /* Crescimento 3 */
+.plant-abobora-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
+.plant-abobora-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
+.plant-abobora-2 { background-image: url('../images/cres_2-abob.png'); } /* Crescimento 2 */
+.plant-abobora-3 { background-image: url('../images/abobora-pronta.jpg'); } /* Crescimento 3 */
 
 .plant-dead { background-image: url(../images/plant-dead.png); } /* Ícone de planta morta */
 
