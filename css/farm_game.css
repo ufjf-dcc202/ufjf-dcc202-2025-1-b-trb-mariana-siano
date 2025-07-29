@@ -1,0 +1,16 @@
+/* Importa a fonte pixelada */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    background-color: #3B2B1E; /* Fundo escuro */
+    margin: 0;
+    padding: 20px;
+    color: #F7E6C4;
+    font-size: 14px;
+    text-align: center;
+}
