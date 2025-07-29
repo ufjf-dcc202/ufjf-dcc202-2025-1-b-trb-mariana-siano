@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     newGameBtn.addEventListener('click', () => {
-        //Redireciona para a página de criação de personagem
-        window.location.href = 'character_creation.html';
+        localStorage.removeItem('playerName');
+        window.location.href = 'farm_game.html'
     });
 
     continueGameBtn.addEventListener('click', () => {

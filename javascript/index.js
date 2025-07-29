@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     newGameBtn.addEventListener('click', () => {
-        //Redireciona para a página de criação de personagem
-        window.location.href = 'character_creation.html';
-    });
+    //Inicia um novo jogo e redireciona para a fazenda
+    localStorage.removeItem('playerName'); //Limpa dados anteriores, se necessário
+    window.location.href = 'farm_game.html';
+});
 
     continueGameBtn.addEventListener('click', () => {
         //Redireciona para a página principal do jogo
