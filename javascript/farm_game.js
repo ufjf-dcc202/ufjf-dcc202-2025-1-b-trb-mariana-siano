@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rand = Math.random();
                 if(rand < 0.1) {
                     cellType = 'stone';
-                } else if (rand < 0.2) {
+                } else if(rand < 0.2) {
                     cellType = 'weed';
                 }
                 farmGrid[r][c] = {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         farmGridElement.innerHTML = '';
 
         for(let r = 0; r < GRID_SIZE; r++) {
-            for (let c = 0; c < GRID_SIZE; c++) {
+            for(let c = 0; c < GRID_SIZE; c++) {
                 const cellData = farmGrid[r][c];
                 const cellElement = document.createElement('div');
                 cellElement.classList.add('grid-cell');
@@ -260,9 +260,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'water':
                 if(cell.type === 'planted' && !cell.dead) {
-                    if(!cell.watered) { // Só rega se não estiver já regada no dia atual
+                    if(!cell.watered) {
                         cell.watered = true;
-                        cell.daysSinceLastWatered = 0; // Reseta o contador de dias sem rega
+                        cell.daysSinceLastWatered = 0;
                         showGameMessage('Planta regada!', 'success');
                     } else {
                         showGameMessage('Esta planta já foi regada hoje.', 'info');
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let plantsGrown = 0;
         let plantsDied = 0;
         let plantsThirsty = 0;
-        for (let r = 0; r < GRID_SIZE; r++) {
+        for(let r = 0; r < GRID_SIZE; r++) {
             for(let c = 0; c < GRID_SIZE; c++) {
                 const cell = farmGrid[r][c];
                 if(cell.type === 'planted' && !cell.dead) {
@@ -333,9 +333,9 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFarmGrid();
 
         let message = `Dia ${currentDay}: O tempo avançou.`;
-        if (plantsGrown > 0) message += ` ${plantsGrown} plantas cresceram.`;
-        if (plantsDied > 0) message += ` ${plantsDied} plantas morreram por falta de água!`;
-        if (plantsThirsty > 0) message += ` ${plantsThirsty} plantas estão com sede!`;
+        if(plantsGrown > 0) message += ` ${plantsGrown} plantas cresceram.`;
+        if(plantsDied > 0) message += ` ${plantsDied} plantas morreram por falta de água!`;
+        if(plantsThirsty > 0) message += ` ${plantsThirsty} plantas estão com sede!`;
         showGameMessage(message, 'info');
         saveGameState();
     }

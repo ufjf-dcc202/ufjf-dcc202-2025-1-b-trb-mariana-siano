@@ -125,28 +125,27 @@ body {
 }
 
 /* Ícones de sementes e plantas */
-/* ATENÇÃO: VERIFIQUE SE ESTES NOMES DE ARQUIVOS E EXTENSÕES CORRESPONDEM EXATAMENTE AOS SEUS ARQUIVOS NA PASTA 'images/' */
 .seed-cenoura { background-image: url('../images/seed-cenoura.png'); }
 .seed-tomate { background-image: url('../images/tomato-seed.png'); }
 .seed-abobora { background-image: url('../images/abobora-seed.png'); }
 
-/* Cenoura */
+/* Cenoura - Fases de Crescimento */
 .plant-cenoura-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-cenoura-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-cenoura-2 { background-image: url('../images/cenoura_cres_2.png'); } /* Crescimento 2 */
 .plant-cenoura-3 { background-image: url('../images/cenoura_pronta.png'); } /* Crescimento 3 (pronto) */
 
-/* Tomate */
+/* Tomate - Fases de Crescimento */
 .plant-tomate-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-tomate-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-tomate-2 { background-image: url('../images/tomate-cres_2.png'); } /* Crescimento 2 */
-.plant-tomate-3 { background-image: url('../images/tomate-pronto.jpg'); } /* Crescimento 3 */
+.plant-tomate-3 { background-image: url('../images/tomate-pronta.png'); }
 
-/* Abobora */
+/* Abobora - Fases de Crescimento */
 .plant-abobora-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-abobora-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-abobora-2 { background-image: url('../images/cres_2-abob.png'); } /* Crescimento 2 */
-.plant-abobora-3 { background-image: url('../images/abobora-pronta.jpg'); } /* Crescimento 3 */
+.plant-abobora-3 { background-image: url('../images/abobora-pronta.png'); }
 
 .plant-dead { background-image: url('../images/plant-dead.png'); } /* Ícone de planta morta */
 
