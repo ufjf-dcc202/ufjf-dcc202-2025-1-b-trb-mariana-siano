@@ -4,52 +4,52 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ICEDew Valley - Sua Fazenda</title>
+        <!-- Importa a fonte pixelada -->
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/farm_game.css">
-        <script src="../javascript/fam_game.js"></script>
+        <script src="../javascript/farm_game.js"></script>
     </head>
-
     <body>
         <div class="game-container">
             <div class="game-header">
                 <h1>ICEDew Valley - Sua Fazenda</h1>
                 <div class="info-bar">
-                    <p>Dinheiro: <span id="money-display">0</span> ouro</p>
+                    <p>Dinheiro: <span id="money-display">0</span> Ouro</p>
                     <p>Semente Selecionada: <span id="selected-seed-display">Nenhuma</span></p>
+                    <p>Dia: <span id="day-display">1</span></p>
                 </div>
             </div>
 
             <div class="game-area">
-                <div class="farm-grid" id="farm-grid"></div>
+                <div id="farm-grid" class="farm-grid"></div>
             </div>
 
-            <div class="game-constrols">
+            <div class="game-controls">
                 <div class="seed-selection">
-                    <h3>Escolha uma semente</h3>
+                    <h3>Escolha uma Semente:</h3>
                     <button class="seed-button" data-seed-type="cenoura">Cenoura (10G)</button>
                     <button class="seed-button" data-seed-type="tomate">Tomate (15G)</button>
-                    <button class="seed-button" data-seed-type="abobora">Abobora (25G)</button>
+                    <button class="seed-button" data-seed-type="abobora">Abóbora (20G)</button>
                 </div>
 
                 <div class="action-buttons">
-                    <h3>Ações</h3>
+                    <h3>Ações:</h3>
                     <button class="action-button" id="clear-tool-btn">Limpar</button>
                     <button class="action-button" id="prepare-tool-btn">Preparar Solo</button>
                     <button class="action-button" id="plant-tool-btn">Plantar</button>
                     <button class="action-button" id="water-tool-btn">Regar</button>
                     <button class="action-button" id="harvest-tool-btn">Colher</button>
-                    <button class="action-button" id="advance-time-btn">Avançar Tempo</button>
                 </div>
             </div>
-        </div>
 
-        <div class="message-box">
-            <p id="game-message">Bem-vindo(a) à sua fazenda! Clique em uma ferramenta e depois em um quadrado</p>
-        </div>
+            <div class="message-box" id="message-box">
+                <p id="game-message">Bem-vindo(a) à sua fazenda! Clique em uma ferramenta e depois em um quadrado.</p>
+            </div>
 
-        <div class="game-footer">
-            <button id="back-to-menu-btn" class="footer-button">Voltar ao Menu Principal</button>
-            <button id="new-game-btn" class="footer-button">Novo Jogo</button>
+            <div class="game-footer">
+                <button id="back-to-menu-btn" class="footer-button">Voltar ao Menu Principal</button>
+                <button id="new-game-btn" class="footer-button">Novo Jogo</button>
+            </div>
         </div>
     </body>
 </html>

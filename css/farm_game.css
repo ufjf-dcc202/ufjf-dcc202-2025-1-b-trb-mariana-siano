@@ -1,4 +1,3 @@
-/* Importa a fonte pixelada */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
@@ -6,7 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    min-height: 100vh; /* Ajustado para 100vh para ocupar a altura total da tela */
     background-color: #3B2B1E; /* Fundo escuro */
     margin: 0;
     padding: 20px;
@@ -19,7 +18,7 @@ body {
     background-color: #6A4C3A;
     border: 5px solid #4A3325;
     border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 1.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Corrigido o valor do box-shadow */
     width: 100%;
     max-width: 1000px;
     padding: 30px;
@@ -36,7 +35,7 @@ body {
 
 .game-header h1 {
     color: #4A3325;
-    font-size: 40px;
+    font-size: 2.5em;
     text-shadow: 2px 2px #D3B586;
     margin-bottom: 15px;
 }
@@ -49,11 +48,13 @@ body {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 10px; /* Espaçamento entre os itens */
 }
 
 .info-bar p {
     margin: 0;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .info-bar span {
@@ -67,7 +68,7 @@ body {
     border-radius: 8px;
     padding: 10px;
     width: 100%;
-    max-width: 620px;
+    max-width: 620px; /* 12 * 50px (cell) + 2 * 10px (padding) */
     box-sizing: border-box;
     overflow: auto; /* Para garantir scroll se a tela for muito pequena */
 }
@@ -125,7 +126,7 @@ body {
 /* Ícones de sementes e plantas (placeholders) */
 .seed-cenoura { background-image: url('../images/seed-cenoura.jpg'); }
 .seed-tomate { background-image: url('../images/tomato-seed.png'); }
-.seed-abobora { background-image: url('../images/abobora-seed.png'); }
+.seed-abobora { background-image: url('../images/abobora-seed.jpg'); }
 
 /* Cenoura */
 .plant-cenoura-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
@@ -137,7 +138,7 @@ body {
 .plant-tomate-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
 .plant-tomate-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-tomate-2 { background-image: url('../images/tomate-cres_2.png'); } /* Crescimento 2 */
-.plant-tomate-3 { background-image: url('../images/tomate-pronto.jpg'); } /* Crescimento 3 */
+.plant-tomate-3 { background-image: url('../images/tomate-pronta.jpg'); } /* Crescimento 3 */
 
 /* Abobora */
 .plant-abobora-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
@@ -145,7 +146,7 @@ body {
 .plant-abobora-2 { background-image: url('../images/cres_2-abob.png'); } /* Crescimento 2 */
 .plant-abobora-3 { background-image: url('../images/abobora-pronta.jpg'); } /* Crescimento 3 */
 
-.plant-dead { background-image: url(../images/plant-dead.png); } /* Ícone de planta morta */
+.plant-dead { background-image: url('../images/plant-dead.png'); } /* Ícone de planta morta */
 
 .game-controls {
     display: flex;
@@ -170,18 +171,18 @@ body {
     color: #D3B586;
     margin-top: 0;
     margin-bottom: 15px;
-    font-size: 19px;
+    font-size: 1.2em;
 }
 
 .seed-button, .action-button {
     background-color: #2ECC71;
     color: white;
     padding: 10px 15px;
-    border: 3px solid #27AC60;
+    border: 3px solid #27AE60;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+    font-size: 0.9em;
     font-weight: bold;
     text-shadow: 1px 1px #1E8449;
     transition: background-color 0.2s ease, transform 0.1s ease;
@@ -217,12 +218,30 @@ body {
     width: 100%;
     margin-top: 20px;
     box-sizing: border-box;
+    color: #4A3325; /* Cor padrão do texto */
 }
 
-.message-box p {
+.message-box.info {
+    background-color: #D3B586;
     color: #4A3325;
+}
+
+.message-box.success {
+    background-color: #A0D0A0; /* Verde claro */
+    color: #2E8B57; /* Verde mais escuro */
+    border-color: #2E8B57;
+}
+
+.message-box.error {
+    background-color: #FFB0B0; /* Vermelho claro */
+    color: #B22222; /* Vermelho escuro */
+    border-color: #B22222;
+}
+
+
+.message-box p {
     margin: 0;
-    font-size: 18px;
+    font-size: 1.1em;
 }
 
 .game-footer {
@@ -243,7 +262,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
+    font-size: 1.1em;
     font-weight: bold;
     text-shadow: 1px 1px #922B21;
     transition: background-color 0.2s ease, transform 0.1s ease;
@@ -289,7 +308,7 @@ body {
 
 @media(max-width: 500px) {
     .game-header h1 {
-        font-size: 29px;
+        font-size: 1.8em;
     }
 
     .info-bar {
