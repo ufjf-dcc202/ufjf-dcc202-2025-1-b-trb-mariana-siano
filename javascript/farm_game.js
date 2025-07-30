@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //--- Configurações do Jogo ---
     const GRID_SIZE = 12; //Grade 12x12
     const INITIAL_MONEY = 100;
-    const DAY_DURATION_MS = 1800000; //Duração de um dia em milissegundos (30 minutos)
+    const DAY_DURATION_MS = 30000; //Duração de um dia em milissegundos (30 segundos)
     const WATERING_GRACE_PERIOD_DAYS = 2; //Número de dias que uma planta pode ficar sem água antes de morrer
 
     //Definição dos tipos de sementes e suas propriedades
@@ -12,24 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
             cost: 10,
             growthPhases: 3, //0: semente, 1: broto, 2: médio, 3: maduro
             harvestValue: 30,
-            iconPrefix: 'plant_cenoura_',
-            seedIcon: 'seed-cenoura.jpg'
+            iconPrefix: 'plant_cenoura_', //Prefixo para classes CSS: plant_cenoura_0, plant_cenoura_1, etc.
+            seedIcon: 'seed-cenoura.png' //Nome do arquivo do ícone da semente
         },
         tomate: {
             name: 'Tomate',
             cost: 15,
             growthPhases: 4,
             harvestValue: 45,
-            iconPrefix: 'plant_tomate_',
-            seedIcon: 'tomato-seed.png'
+            iconPrefix: 'plant_tomate_', //Prefixo para classes CSS: plant_tomate_0, plant_tomate_1, etc.
+            seedIcon: 'tomato-seed.png' //Nome do arquivo do ícone da semente
         },
         abobora: {
             name: 'Abóbora',
             cost: 20,
             growthPhases: 5,
             harvestValue: 60,
-            iconPrefix: 'plant_abobora_',
-            seedIcon: 'abobora-seed.jpg'
+            iconPrefix: 'plant_abobora_', //Prefixo para classes CSS: plant_abobora_0, plant_abobora_1, etc.
+            seedIcon: 'abobora-seed.png' //Nome do arquivo do ícone da semente
         }
     };
 
@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const newGameBtn = document.getElementById('new-game-btn');
 
     //--- Funções de Salvamento e Carregamento ---
-
     //Salva o estado atual do jogo no localStorage.
     function saveGameState() {
         localStorage.setItem('farmMoney', money);
@@ -90,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
-
             showGameMessage('Jogo carregado!', 'info');
             return true;
         }
@@ -127,20 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
     //Inicializa a grade da fazenda com espaços vazios, pedras e ervas daninhas.
     function initializeFarmGrid() {
         farmGrid = [];
-
         for(let r = 0; r < GRID_SIZE; r++) {
             farmGrid[r] = [];
-
             for(let c = 0; c < GRID_SIZE; c++) {
                 let cellType = 'empty';
                 const rand = Math.random();
-
                 if(rand < 0.1) {
                     cellType = 'stone';
                 } else if (rand < 0.2) {
                     cellType = 'weed';
                 }
-
                 farmGrid[r][c] = {
                     type: cellType,
                     seedType: null,
@@ -159,17 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
         farmGridElement.innerHTML = '';
 
         for(let r = 0; r < GRID_SIZE; r++) {
-            for(let c = 0; c < GRID_SIZE; c++) {
+            for (let c = 0; c < GRID_SIZE; c++) {
                 const cellData = farmGrid[r][c];
                 const cellElement = document.createElement('div');
-
                 cellElement.classList.add('grid-cell');
                 cellElement.dataset.row = r;
                 cellElement.dataset.col = c;
-
                 cellElement.classList.add(`cell-${cellData.type}`);
-
-                if(cellData.watered || (cellData.type === 'planted' && cellData.daysSinceLastWatered === 0)) {
+                if(cellData.type === 'planted' && cellData.daysSinceLastWatered === 0 && !cellData.dead) {
                     cellElement.classList.add('cell-watered');
                 } else {
                     cellElement.classList.remove('cell-watered');
@@ -182,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(cellData.type === 'planted' && cellData.seedType) {
                     const plantIcon = document.createElement('div');
                     plantIcon.classList.add('plant-icon');
-
                     if(cellData.dead) {
                         plantIcon.classList.add('plant-dead');
                     } else {
@@ -220,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        switch(selectedTool) {
+        switch (selectedTool) {
             case 'clear':
                 if(cell.type === 'stone' || cell.type === 'weed' || cell.dead) {
                     cell.type = 'empty';
@@ -234,18 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     showGameMessage('Nada para limpar aqui.', 'info');
                 }
                 break;
-
             case 'prepare':
                 if(cell.type === 'empty') {
                     cell.type = 'prepared';
                     showGameMessage('Solo preparado para o plantio!', 'success');
-                } else if (cell.type === 'prepared') {
+                } else if(cell.type === 'prepared') {
                     showGameMessage('Solo já está preparado.', 'info');
                 } else {
                     showGameMessage('Não é possível preparar este terreno. Limpe-o primeiro.', 'error');
                 }
                 break;
-
             case 'plant':
                 if(cell.type === 'prepared' && selectedSeed) {
                     const seedInfo = seedTypes[selectedSeed];
@@ -254,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         cell.type = 'planted';
                         cell.seedType = selectedSeed;
                         cell.growthPhase = 0;
-                        cell.watered = true; //Planta recém-plantada é considerada regada no dia 0
+                        cell.watered = true; // Planta recém-plantada é considerada regada no dia 0
                         cell.daysSinceLastWatered = 0;
                         cell.dead = false;
                         updateMoneyDisplay();
@@ -270,12 +258,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     showGameMessage('O solo precisa ser preparado antes de plantar.', 'error');
                 }
                 break;
-
             case 'water':
                 if(cell.type === 'planted' && !cell.dead) {
-                    if(!cell.watered) { //Só rega se não estiver já regada no dia atual
+                    if(!cell.watered) { // Só rega se não estiver já regada no dia atual
                         cell.watered = true;
-                        cell.daysSinceLastWatered = 0; //Reseta o contador de dias sem rega
+                        cell.daysSinceLastWatered = 0; // Reseta o contador de dias sem rega
                         showGameMessage('Planta regada!', 'success');
                     } else {
                         showGameMessage('Esta planta já foi regada hoje.', 'info');
@@ -286,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     showGameMessage('Nada para regar aqui.', 'info');
                 }
                 break;
-
             case 'harvest':
                 if(cell.type === 'planted' && cell.seedType && cell.growthPhase === seedTypes[cell.seedType].growthPhases && !cell.dead) {
                     const seedInfo = seedTypes[cell.seedType];
@@ -317,19 +303,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function advanceTime() {
         currentDay++;
         updateDayDisplay();
-
         let plantsGrown = 0;
         let plantsDied = 0;
         let plantsThirsty = 0;
-
-        for(let r = 0; r < GRID_SIZE; r++) {
+        for (let r = 0; r < GRID_SIZE; r++) {
             for(let c = 0; c < GRID_SIZE; c++) {
                 const cell = farmGrid[r][c];
-
                 if(cell.type === 'planted' && !cell.dead) {
                     if(cell.watered) {
                         const seedInfo = seedTypes[cell.seedType];
-
                         if(cell.growthPhase < seedInfo.growthPhases) {
                             cell.growthPhase++;
                             plantsGrown++;
@@ -337,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         cell.daysSinceLastWatered = 0; // Reseta o contador
                     } else {
                         cell.daysSinceLastWatered++;
-
                         if(cell.daysSinceLastWatered >= WATERING_GRACE_PERIOD_DAYS) {
                             cell.dead = true;
                             plantsDied++;
@@ -352,17 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFarmGrid();
 
         let message = `Dia ${currentDay}: O tempo avançou.`;
-        if(plantsGrown > 0) 
-            message += ` ${plantsGrown} plantas cresceram.`;
-
-        if(plantsDied > 0)
-            message += ` ${plantsDied} plantas morreram por falta de água!`;
-
-        if(plantsThirsty > 0) 
-            message += ` ${plantsThirsty} plantas estão com sede!`;
-
+        if (plantsGrown > 0) message += ` ${plantsGrown} plantas cresceram.`;
+        if (plantsDied > 0) message += ` ${plantsDied} plantas morreram por falta de água!`;
+        if (plantsThirsty > 0) message += ` ${plantsThirsty} plantas estão com sede!`;
         showGameMessage(message, 'info');
-
         saveGameState();
     }
 
@@ -400,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function highlightSelectedButton(buttons, selectedKey) {
         buttons.forEach(button => {
             const buttonKey = button.dataset.seedType || button.id.replace('-tool-btn', '');
-
             if(buttonKey === selectedKey) {
                 button.classList.add('selected');
             } else {
@@ -409,9 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * Inicia o loop principal do jogo (avanço de tempo automático).
-     */
+    //Inicia o loop principal do jogo (avanço de tempo automático).
     function startGameLoop() {
         stopGameLoop();
         gameInterval = setInterval(advanceTime, DAY_DURATION_MS);
@@ -442,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
         highlightSelectedButton(seedButtons, null);
         highlightSelectedButton(actionButtons, null);
 
-        renderFarmGrid();
+        renderFarmGrid(); //Garante que a grade é renderizada na inicialização/carregamento
         startGameLoop();
     }
 
@@ -465,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     newGameBtn.addEventListener('click', () => {
         const confirmNewGame = confirm('Tem certeza que deseja iniciar um Novo Jogo? Todo o progresso da fazenda será perdido.');
-        if (confirmNewGame) {
+        if(confirmNewGame) {
             stopGameLoop();
             localStorage.clear();
             initGame();

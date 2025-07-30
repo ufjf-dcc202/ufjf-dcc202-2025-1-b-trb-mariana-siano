@@ -1,3 +1,4 @@
+/* Importa a fonte pixelada */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
@@ -5,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ajustado para 100vh para ocupar a altura total da tela */
+    min-height: 700px;
     background-color: #3B2B1E; /* Fundo escuro */
     margin: 0;
     padding: 20px;
@@ -18,7 +19,7 @@ body {
     background-color: #6A4C3A;
     border: 5px solid #4A3325;
     border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Corrigido o valor do box-shadow */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     width: 100%;
     max-width: 1000px;
     padding: 30px;
@@ -48,8 +49,8 @@ body {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
-    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-    gap: 10px; /* Espaçamento entre os itens */
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .info-bar p {
@@ -68,24 +69,24 @@ body {
     border-radius: 8px;
     padding: 10px;
     width: 100%;
-    max-width: 620px; /* 12 * 50px (cell) + 2 * 10px (padding) */
+    max-width: 620px;
     box-sizing: border-box;
-    overflow: auto; /* Para garantir scroll se a tela for muito pequena */
+    overflow: auto;
 }
 
 .farm-grid {
     display: grid;
-    grid-template-columns: repeat(12, 50px); /* 12 colunas de 50px */
-    grid-template-rows: repeat(12, 50px); /* 12 linhas de 50px */
-    gap: 2px; /* Espaço entre as células */
-    justify-content: center; /* Centraliza a grade */
-    align-content: center; /* Centraliza a grade */
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: repeat(12, 50px);
+    gap: 2px;
+    justify-content: center;
+    align-content: center;
 }
 
 .grid-cell {
     width: 50px;
     height: 50px;
-    background-color: #A0D0A0; /* Cor de solo vazio */
+    background-color: #A0D0A0;
     border: 1px solid #7A9A7A;
     display: flex;
     justify-content: center;
@@ -94,7 +95,7 @@ body {
     cursor: pointer;
     transition: background-color 0.1s ease, border-color 0.1s ease;
     position: relative;
-    image-rendering: pixelated; /* Garante que os ícones sejam pixelados */
+    image-rendering: pixelated;
 }
 
 .grid-cell:hover {
@@ -106,10 +107,10 @@ body {
 .cell-empty { background-color: #A0D0A0; }
 .cell-stone { background-color: #B0B0B0; background-image: url('../images/stone.png'); background-size: 80%; background-repeat: no-repeat; background-position: center; }
 .cell-weed { background-color: #80C080; background-image: url('../images/tree-leaves.png'); background-size: 80%; background-repeat: no-repeat; background-position: center; }
-.cell-prepared { background-color: #C08060; } /* Solo preparado */
-.cell-planted { background-color: #C08060; } /* Solo com semente */
-.cell-watered { border: 2px solid #3498DB; } /* Borda azul para regado */
-.cell-dead { background-color: #404040; opacity: 0.6; } /* Planta morta */
+.cell-prepared { background-color: #C08060; }
+.cell-planted { background-color: #C08060; }
+.cell-watered { border: 2px solid #3498DB; }
+.cell-dead { background-color: #404040; opacity: 0.6; }
 
 /* Estilos para as fases de crescimento das plantas */
 .plant-icon {
@@ -119,29 +120,30 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    bottom: 0; /* Começa da base da célula */
+    bottom: 0;
     left: 10%;
 }
 
-/* Ícones de sementes e plantas (placeholders) */
-.seed-cenoura { background-image: url('../images/seed-cenoura.jpg'); }
+/* Ícones de sementes e plantas */
+/* ATENÇÃO: VERIFIQUE SE ESTES NOMES DE ARQUIVOS E EXTENSÕES CORRESPONDEM EXATAMENTE AOS SEUS ARQUIVOS NA PASTA 'images/' */
+.seed-cenoura { background-image: url('../images/seed-cenoura.png'); }
 .seed-tomate { background-image: url('../images/tomato-seed.png'); }
-.seed-abobora { background-image: url('../images/abobora-seed.jpg'); }
+.seed-abobora { background-image: url('../images/abobora-seed.png'); }
 
 /* Cenoura */
-.plant-cenoura-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
+.plant-cenoura-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-cenoura-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-cenoura-2 { background-image: url('../images/cenoura_cres_2.png'); } /* Crescimento 2 */
 .plant-cenoura-3 { background-image: url('../images/cenoura_pronta.png'); } /* Crescimento 3 (pronto) */
 
 /* Tomate */
-.plant-tomate-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
+.plant-tomate-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-tomate-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-tomate-2 { background-image: url('../images/tomate-cres_2.png'); } /* Crescimento 2 */
-.plant-tomate-3 { background-image: url('../images/tomate-pronta.jpg'); } /* Crescimento 3 */
+.plant-tomate-3 { background-image: url('../images/tomate-pronto.jpg'); } /* Crescimento 3 */
 
 /* Abobora */
-.plant-abobora-0 { background-image: url('../images/cresc-0_seed.jpg'); } /* Semente */
+.plant-abobora-0 { background-image: url('../images/cresc-0_seed.png'); } /* Semente */
 .plant-abobora-1 { background-image: url('../images/cresc_1.png'); } /* Crescimento 1 */
 .plant-abobora-2 { background-image: url('../images/cres_2-abob.png'); } /* Crescimento 2 */
 .plant-abobora-3 { background-image: url('../images/abobora-pronta.jpg'); } /* Crescimento 3 */
@@ -187,7 +189,7 @@ body {
     text-shadow: 1px 1px #1E8449;
     transition: background-color 0.2s ease, transform 0.1s ease;
     margin: 5px;
-    width: calc(50% - 10px); /* Dois botões por linha */
+    width: calc(50% - 10px);
     box-sizing: border-box;
 }
 
@@ -201,12 +203,12 @@ body {
 }
 
 .seed-button.selected {
-    background-color: #E67E22; /* Laranja para semente selecionada */
+    background-color: #E67E22;
     border-color: #D35400;
 }
 
 .action-button.selected {
-    background-color: #3498DB; /* Azul para ferramenta selecionada */
+    background-color: #3498DB;
     border-color: #2980B9;
 }
 
@@ -218,7 +220,7 @@ body {
     width: 100%;
     margin-top: 20px;
     box-sizing: border-box;
-    color: #4A3325; /* Cor padrão do texto */
+    color: #4A3325;
 }
 
 .message-box.info {
@@ -227,14 +229,14 @@ body {
 }
 
 .message-box.success {
-    background-color: #A0D0A0; /* Verde claro */
-    color: #2E8B57; /* Verde mais escuro */
+    background-color: #A0D0A0;
+    color: #2E8B57;
     border-color: #2E8B57;
 }
 
 .message-box.error {
-    background-color: #FFB0B0; /* Vermelho claro */
-    color: #B22222; /* Vermelho escuro */
+    background-color: #FFB0B0;
+    color: #B22222;
     border-color: #B22222;
 }
 
@@ -255,7 +257,7 @@ body {
 }
 
 .footer-button {
-    background-color: #E74C3C; /* Vermelho para resetar */
+    background-color: #E74C3C;
     color: white;
     padding: 10px 20px;
     border: 3px solid #C0392B;
@@ -290,11 +292,11 @@ body {
     }
 
     .seed-button, .action-button {
-        width: calc(100% - 10px); /* Um botão por linha */
+        width: calc(100% - 10px);
     }
 
     .farm-grid {
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Ajusta tamanho da célula */
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
         grid-template-rows: repeat(auto-fit, minmax(40px, 1fr));
     }
 
